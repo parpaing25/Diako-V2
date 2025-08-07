@@ -93,7 +93,7 @@ function Login() {
           </form>
           {/* Lien vers la page d'inscription */}
           <p className="mt-4 text-center text-sm">
-            Pas encore de compte ?{' '}
+            Pas encore de compte ?{' '}
             <a href="/register" className="text-travel-blue underline">
               Créer un compte
             </a>
