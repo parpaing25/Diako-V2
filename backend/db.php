@@ -1,11 +1,11 @@
 <?php
 // Database connection helper
-// Update these credentials to match your o2switch MySQL database.
+// Credentials can be configured via environment variables for easy local setup.
 
-$host = 'localhost';        // e.g. localhost or 127.0.0.1
-$dbname = 'diako_db';       // database name
-$username = 'db_user';      // database username
-$password = 'db_password';  // database password
+$host = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: 'diako_db';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') ?: '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
@@ -17,3 +17,4 @@ try {
     echo json_encode(['error' => 'Database connection failed']);
     exit;
 }
+

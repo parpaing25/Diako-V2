@@ -45,26 +45,26 @@ cd Diako-V2
 npm install
 ```
 
-4. Créez une base de données MySQL et importez le schéma SQL :
+4. Préparez la base de données MySQL automatiquement :
 
 ```bash
-# Dans votre client MySQL
-CREATE DATABASE diako_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE diako_db;
-SOURCE sql/schema.sql;
+# Variables optionnelles : DB_USER, DB_PASS, DB_HOST, DB_NAME
+npm run setup
 ```
 
-5. Configurez les identifiants de la base de données dans `backend/db.php` en remplaçant les valeurs de `$dbname`, `$username` et `$password`.
+Ce script crée (si besoin) la base `diako_db` et importe `sql/schema.sql` en utilisant l’utilisateur MySQL `root` sans mot de passe par défaut.
+
+5. Les identifiants MySQL peuvent être modifiés via les variables d’environnement `DB_HOST`, `DB_NAME`, `DB_USER` et `DB_PASS`. Le fichier `backend/db.php` les lit automatiquement.
 
 6. Mettez à jour la configuration Firebase dans `src/firebase.ts` ou, pour plus de sécurité, créez un fichier `.env` et chargez les variables via `import.meta.env`.
 
-7. Démarrez le serveur de développement :
+7. Démarrez le serveur de développement (frontend Vite + backend PHP intégré) :
 
 ```bash
 npm run dev
 ```
 
-L’interface sera accessible sur `http://localhost:8080` par défaut (les ports libres suivants sont essayés automatiquement si nécessaire). La partie backend en PHP doit être servie par un serveur web (Apache/Nginx) configuré pour pointer vers le dossier `Diako-V2/backend`.
+L’interface sera accessible sur `http://localhost:5173` pour le frontend et les requêtes API seront servies sur `http://localhost:8000` par le serveur PHP intégré.
 
 ### Fichiers importants
 
